@@ -22,7 +22,7 @@ public class DatastructuresAndAlgorithms {
     	
     	for(listTail = listHead; listTail.hasMoreElementsForward(); listTail = listTail.getNextElement())
     	{
-    		System.out.println(listTail.getCurrent());
+    		System.out.println(listTail.getValue());
     	}
     }
     static void testDoubleLinkedListBackwards()
@@ -36,9 +36,9 @@ public class DatastructuresAndAlgorithms {
     		listTail = listTail.getNextElement();
     	}
     	listTail = listTail.prev;
-    	for(listHead = listTail; listTail.next.hasMoreElementsBackwards(); listTail = listTail.getLastElement())
+    	for(listHead = listTail; listTail.next.hasMoreElementsBackwards(); listTail = listTail.getPrevElement())
     	{
-    			System.out.println(listTail.getCurrent());
+    			System.out.println(listTail.getValue());
     		
 //    		if(listTail.prev == null) // For safety reasons, otherwise it would throw a NullPointer-Exception
 //    		{
