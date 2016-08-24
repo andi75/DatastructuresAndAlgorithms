@@ -1,8 +1,10 @@
+package Lukas;
+
 
 public class DatastructuresAndAlgorithms {
     public static void main(String[] args)
     {	
-        //testDoubleLinkedListForward();
+        // testDoubleLinkedListForward();
         testDoubleLinkedListBackwards();
     }
     
@@ -38,10 +40,10 @@ public class DatastructuresAndAlgorithms {
     	{
     			System.out.println(listTail.getCurrent());
     		
-    		if(listTail.prev == null) // For safety reasons, otherwise it would throw a NullPointer-Exception
-    		{
-    			break;
-    		}
+//    		if(listTail.prev == null) // For safety reasons, otherwise it would throw a NullPointer-Exception
+//    		{
+//    			break;
+//    		}
     	}
     }
 }

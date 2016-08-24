@@ -1,3 +1,5 @@
+package UmA;
+
 
 public class LinkedList<T> {
     LinkedList<T> next;
