@@ -3,22 +3,22 @@ package Lukas;
 
 public class DoubleLinkedList<T> {
 	DoubleLinkedList<T> next;
-	T current;
+	T value;
 	DoubleLinkedList<T> prev;
 	
 	public DoubleLinkedList() {}
 	
-	public void setCurrent(T item)
+	public void setValue(T item)
 	{
 		assert(next != null);
 		assert(prev != null);
-		this.current = item;
+		this.value = item;
 	}
-	public T getCurrent()
+	public T getValue()
 	{
 		assert(next != null);
 		assert(prev != null);
-		return current;
+		return value;
 	}
 	
 	public boolean hasMoreElementsForward()
@@ -35,7 +35,7 @@ public class DoubleLinkedList<T> {
 		assert(next != null);
 		return next;
 	}
-	public DoubleLinkedList<T> getLastElement()
+	public DoubleLinkedList<T> getPrevElement()
 	{
 		assert(prev != null);
 		return prev;
@@ -55,7 +55,7 @@ public class DoubleLinkedList<T> {
 		}
 		*/
 
-		last.current = newItem;
+		last.value = newItem;
 		last.next = new DoubleLinkedList<T>();
 		
 		//This gives a great overview. Enable to see the linking of the List:
