@@ -19,7 +19,7 @@ public class DatastructuresAndAlgorithms {
             listTail = listTail.getNextElement();   
         }
         listTail = listTail.next;
-        for(listTail = listHead; listTail.hasMoreElements(); listTail = listTail.getNextElement())
+        for(listTail = listHead; listTail.hasMoreElementsForward(); listTail = listTail.getNextElement())
         {
             System.out.println(listTail.getValue());
         }
@@ -27,18 +27,17 @@ public class DatastructuresAndAlgorithms {
 	}
 
 	static void testDoubleLinkedListBackwards() throws Exception{
-		String strings[]= {"backwards", "does", "so"};
+		String strings[]= {"!","backwards", "does", "so"};
 		DoubleLinkedList <String> listHead = new DoubleLinkedList<>();
 		DoubleLinkedList <String> listTail = listHead;
 		
 		for (String string : strings){
 			listTail.append(string);
-            listTail = listTail.getNextElement();
+                        listTail = listTail.getNextElement();
 		}
-		listTail = listTail.previous;
 
 		for(listHead = listTail; listTail.hasMoreElementsBackwards(); listTail = listTail.getPreviousElement()){
-			System.out.println(listTail.getValue());
+			System.out.println(listTail.previous.getValue());
 		}
 		
 	}
