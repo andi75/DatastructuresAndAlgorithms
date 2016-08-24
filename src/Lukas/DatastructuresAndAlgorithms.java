@@ -1,49 +1,50 @@
 package Lukas;
 
+public class DatastructuresAndAlgorithms
+{
 
-public class DatastructuresAndAlgorithms {
     public static void main(String[] args)
-    {	
-        // testDoubleLinkedListForward();
+    {
+        //testDoubleLinkedListForward();
         testDoubleLinkedListBackwards();
     }
-    
-  
+
     static void testDoubleLinkedListForward()
     {
-    	String strings[] = {"L", "I", "V", "E"};
-    	DoubleLinkedList<String> listHead = new DoubleLinkedList<String>();
-    	DoubleLinkedList<String> listTail = listHead;
-    	for (String string : strings)
-    	{
-    		listTail.append(string);
-    		listTail = listTail.getNextElement();
-    	}
-    	
-    	for(listTail = listHead; listTail.hasMoreElementsForward(); listTail = listTail.getNextElement())
-    	{
-    		System.out.println(listTail.getValue());
-    	}
+        String[] objects =
+        {
+            "L", "I", "V", "E",
+        };
+        DoubleLinkedList<String> startSentinel = new DoubleLinkedList<String>();
+        DoubleLinkedList<String> endSentinel = startSentinel;
+        for (String string : objects)
+        {
+            endSentinel.insertAfter(string);
+            endSentinel = endSentinel.getNextElement();
+        }
+
+        for (endSentinel = startSentinel; endSentinel.hasNextElement(); endSentinel = endSentinel.getNextElement())
+        {
+            System.out.println(endSentinel.getValue());
+        }
     }
+
     static void testDoubleLinkedListBackwards()
     {
-    	String strings[] = {"L", "I", "V", "E"};
-    	DoubleLinkedList<String> listHead = new DoubleLinkedList<String>();
-    	DoubleLinkedList<String> listTail = listHead;
-    	for (String string : strings)
-    	{
-    		listTail.append(string);
-    		listTail = listTail.getNextElement();
-    	}
-    	listTail = listTail.prev;
-    	for(listHead = listTail; listTail.next.hasMoreElementsBackwards(); listTail = listTail.getPrevElement())
-    	{
-    			System.out.println(listTail.getValue());
-    		
-//    		if(listTail.prev == null) // For safety reasons, otherwise it would throw a NullPointer-Exception
-//    		{
-//    			break;
-//    		}
-    	}
+        String[] objects =
+        {
+            "L", "I", "V", "E"
+        };
+        DoubleLinkedList<String> startSentinel = new DoubleLinkedList<String>();
+        DoubleLinkedList<String> endSentinel = startSentinel;
+        for (String string : objects)
+        {
+            endSentinel.insertAfter(string);
+            endSentinel = endSentinel.getNextElement();
+        }
+        for (startSentinel = endSentinel; startSentinel.hasPreviousElement(); startSentinel = startSentinel.getPreviousElement())
+        {
+            System.out.println(startSentinel.previous.getValue());
+        }
     }
 }
