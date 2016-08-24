@@ -2,7 +2,7 @@ package Carlo;
 
 
 public class DoubleLinkedList <T> {
-	DoubleLinkedList<T> next;
+    DoubleLinkedList<T> next;
     T value;
     DoubleLinkedList<T> previous;
     
@@ -21,9 +21,14 @@ public class DoubleLinkedList <T> {
         return value;
     }
     
-    public boolean hasMoreElements()
+    public boolean hasMoreElementsForward()
     {
         return next != null;
+    }
+    
+    public boolean hasMoreElementsBackwards(){
+    	assert (previous != null);
+    	return previous != null;
     }
     
     public DoubleLinkedList<T> getNextElement()
@@ -40,10 +45,6 @@ public class DoubleLinkedList <T> {
 
     }
     
-    public boolean hasMoreElementsBackwards(){
-    	assert (previous != null);
-    	return previous != null;
-    }
     
     public void append(T value)
     {
