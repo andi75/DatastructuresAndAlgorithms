@@ -42,7 +42,7 @@ public class DoubleLinkedList<T> {
     	return previous;
     }
     
-    public DoubleLinkedList<T> getLastElement()
+    public DoubleLinkedList<T> getTailSentinel()
     {
     	 DoubleLinkedList<T> last = this;
          while(last.next != null) { last = last.next; };
@@ -50,7 +50,7 @@ public class DoubleLinkedList<T> {
          
     }
     
-    public DoubleLinkedList<T> getFirstElement()
+    public DoubleLinkedList<T> getHeadSentinel()
     {
     	DoubleLinkedList<T> first = this;
     	while(first.previous != null) { first = first.previous; };
@@ -59,8 +59,12 @@ public class DoubleLinkedList<T> {
     
     public void append(T value)
     {
-       DoubleLinkedList<T> last = getLastElement();
+        // takes the tail sentinel
+       DoubleLinkedList<T> last = getTailSentinel();
+       
+       // adds data to it, so it becomes a "normal" node
        last.value = value;
+       // create a new tail sentinel
        last.next = new DoubleLinkedList<T>();
        last.next.previous = last;
        
