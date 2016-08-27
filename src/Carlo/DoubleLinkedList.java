@@ -46,7 +46,7 @@ public class DoubleLinkedList <T> {
     }
     
     
-    public void append(T value)
+    public void appendAfter(T value)
     {
         DoubleLinkedList<T> last = this;
         last.value = value;
@@ -54,5 +54,12 @@ public class DoubleLinkedList <T> {
         last.next.previous = last;
     }
     
+    public void appendBefore (T value)
+    {
+        DoubleLinkedList<T> last = this;
+        last.value = value;
+        last.previous = new DoubleLinkedList<> ();
+        last.previous.next = last;
+    }
     
 }
