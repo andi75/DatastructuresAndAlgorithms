@@ -9,6 +9,28 @@ public class DoubleLinkedList<T> {
     
     public DoubleLinkedList() {}
     
+    public static DoubleLinkedList createEmptyList() {
+    
+    	DoubleLinkedList HeadSentinel = new DoubleLinkedList(); //head sentinel
+        DoubleLinkedList TailSentinel = new DoubleLinkedList(); //tail sentinel
+        HeadSentinel.next = TailSentinel;
+        HeadSentinel.next.previous = HeadSentinel;
+        HeadSentinel = HeadSentinel.next;
+
+        return HeadSentinel;
+    }
+    
+    public void fillList(T... items) {
+    	DoubleLinkedList list = this.getHeadSentinel();
+    	//list.next = new DoubleLinkedList();
+    			
+    	for (T i : items) {
+            list.insertAfter(i);
+            list = list.next;
+        }
+    }
+    
+    
     public void setValue(T value)
     {
         assert(next != null);
@@ -68,5 +90,32 @@ public class DoubleLinkedList<T> {
        last.next = new DoubleLinkedList<T>();
        last.next.previous = last;
        
+    }
+    
+    public void insertAfter(T value) {
+    	
+    	assert(this.next.next != null);
+    	
+    	DoubleLinkedList after = this.next;
+    	
+    	this.next = new DoubleLinkedList();
+    	this.next.value = value;
+    	this.next.previous = this;
+    	this.next.next = after;
+    	after.previous = this.next;
+    
+    }
+    
+    public void insertBefore(T value) {
+    	
+    	assert(this.previous.previous != null);
+    	
+    	DoubleLinkedList prev = this.previous;
+    	
+    	this.previous = new DoubleLinkedList();
+    	this.previous.value = value;
+    	this.previous.next = this;
+    	this.previous.previous = prev;
+    	prev.next = this.previous;
     }
 }
