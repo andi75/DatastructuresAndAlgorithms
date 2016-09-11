@@ -11,34 +11,32 @@ public class DatastructuresAndAlgorithms {
 	
 	static void testDoubleLinkedListForward(){
             String strings[] = {"forward", "works", "perfectly"};
-            DoubleLinkedList<String> listHead = new DoubleLinkedList<>();
-            DoubleLinkedList<String> listTail = listHead;
-            for (String string : strings)
-            {
-            listTail.appendAfter(string);
-            listTail = listTail.getNextElement();   
+            DoubleLinkedList firstNode = DoubleLinkedList.createEmptyList();
+            DoubleLinkedList currentNode = firstNode;
+            for (String string : strings){
+                currentNode.appendAfter(string);
+                currentNode = currentNode.getNextElement();
             }
-            for(listTail = listHead; listTail.hasMoreElementsForward(); listTail = listTail.getNextElement())
-            {
-            System.out.println(listTail.getValue());
+            for (currentNode = firstNode.next; currentNode.hasMoreElementsForward(); currentNode = currentNode.getNextElement()){
+                System.out.println(currentNode.getValue());
             }
 		
 	}
 
 	static void testDoubleLinkedListBackwards() {
 		String strings[]= {"!","backwards", "does", "so"};
-		DoubleLinkedList <String> listHead = new DoubleLinkedList<>();
-		DoubleLinkedList <String> listTail = listHead;
-                
-		
+		DoubleLinkedList firstNode = DoubleLinkedList.createEmptyList();
+                DoubleLinkedList lastNode = firstNode.next;
+                DoubleLinkedList currentNode = lastNode;
+                		
 		for (String string : strings){
-			listTail.appendBefore(string);
-                        listTail = listTail.getPreviousElement();
+			currentNode.appendBefore(string);
+                        currentNode = currentNode.getPreviousElement();
 		}
                 
-		for(listHead = listTail; listTail.hasMoreElementsForward(); listTail = listTail.getNextElement()){
-			System.out.println(listTail.next.getValue());
-		}
+		for (currentNode = firstNode.next; currentNode.hasMoreElementsForward(); currentNode = currentNode.getNextElement()){
+                    System.out.println(currentNode.getValue());
+                }
 		
 	}
         
