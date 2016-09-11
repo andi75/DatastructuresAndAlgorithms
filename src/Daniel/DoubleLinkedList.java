@@ -94,7 +94,7 @@ public class DoubleLinkedList<T> {
     
     public void insertAfter(T value) {
     	
-    	assert(this.next.next != null);
+    	assert(this.next.next == null);
     	
     	DoubleLinkedList after = this.next;
     	

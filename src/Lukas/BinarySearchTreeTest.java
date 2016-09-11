@@ -33,9 +33,13 @@ public class BinarySearchTreeTest
         // Test it...
         
         root.inOrderTraversal();
+        
+        /*
         root.preOrderTraversal();
         root.postOrderTraversal();
-        
+        */
         
     }
+    
+    
 }
