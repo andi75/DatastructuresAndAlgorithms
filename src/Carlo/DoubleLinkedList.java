@@ -8,6 +8,14 @@ public class DoubleLinkedList <T> {
     
     public DoubleLinkedList() {}
     
+    public static DoubleLinkedList createEmptyList (){
+        DoubleLinkedList firstNode = new DoubleLinkedList();
+        DoubleLinkedList lastNode = new DoubleLinkedList();
+        firstNode.next = lastNode;
+        lastNode.previous = firstNode;
+        return firstNode;
+    }
+    
     public void setValue(T value)
     {
         assert(next != null);
@@ -27,14 +35,12 @@ public class DoubleLinkedList <T> {
     }
     
     public boolean hasMoreElementsBackwards(){
-    	assert (previous != null);
     	return previous != null;
     }
     
     public DoubleLinkedList<T> getNextElement()
     {
         assert(next != null);
-        assert(previous != null);
         return next;
     }
     
@@ -49,17 +55,23 @@ public class DoubleLinkedList <T> {
     public void appendAfter(T value)
     {
         DoubleLinkedList<T> last = this;
-        last.value = value;
-        last.next = new DoubleLinkedList<>();
-        last.next.previous = last;
+        DoubleLinkedList newNode = new DoubleLinkedList<> ();
+        newNode.value = value;
+        newNode.previous = this;
+        newNode.next = this.next;
+        this.next.previous = newNode;
+        this.next = newNode;        
     }
     
     public void appendBefore (T value)
     {
         DoubleLinkedList<T> last = this;
-        last.value = value;
-        last.previous = new DoubleLinkedList<> ();
-        last.previous.next = last;
+        DoubleLinkedList newNode = new DoubleLinkedList<> ();
+        newNode.value = value;
+        newNode.next = this;
+        newNode.previous = this.previous;
+        this.previous.next = newNode;
+        this.previous = newNode;
     }
     
 }
