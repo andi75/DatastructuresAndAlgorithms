@@ -4,7 +4,7 @@ public class BinaryTree {
 
     public static void main(String[] args){
         
-        int values[] = { 2, 4, 6, 7, 1, 8, 9, 14};
+        int values[] = { 7, 4, 2, 6, 5, 10, 8, 15, 17, 11, 13};
         
         TreeNode root = null;
         
@@ -17,16 +17,18 @@ public class BinaryTree {
                 root.add(v);
             }
         }
+        System.out.println("Printing InOrder:");
+        root.printInOrder();
+        System.out.println("Printing PreOrder:");
+        root.printPreOrder();
+        System.out.println("Printing PostOrder:");
+        root.printPostOrder(); 
+        TreeNode five = root.find(4);
+        root = five.update(9);
+        /*
         root.printInOrder();
         root.printPreOrder();
-        root.printPostOrder();
-        
-        TreeNode five = root.find(5);
-        root = five.update(15);
-        
-        root.printInOrder();
-        root.printPreOrder();
-        root.printPostOrder();
+        root.printPostOrder();*/
     }
     
 }
