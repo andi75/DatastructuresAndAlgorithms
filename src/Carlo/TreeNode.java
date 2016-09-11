@@ -13,9 +13,9 @@ public class TreeNode {
         TreeNode currentNode = this;
         TreeNode newNode = new TreeNode(v);
         
-        if (newNode.value <= currentNode.value){
+        if (newNode.value >= currentNode.value){
             if (currentNode.rightChild == null){
-                currentNode.rightChild = currentNode;
+                currentNode.rightChild = newNode;
                 newNode.parent = currentNode;
             }
             else {
@@ -24,7 +24,7 @@ public class TreeNode {
         }
         else{
             if (currentNode.leftChild == null){
-                currentNode.leftChild = currentNode;
+                currentNode.leftChild = newNode;
                 newNode.parent = currentNode;
             }
             else {
@@ -35,19 +35,25 @@ public class TreeNode {
         
     }
 
-    public void printInOrder() {
-        
+    public void printInOrder() {  
         if (leftChild != null){
             leftChild.printInOrder();
         }
         System.out.println(this.value);
-        
-        
+        if (rightChild != null){
+            rightChild.printInOrder();
+        }                
     }
     
     
     public void printPostOrder() {
-        
+        if (leftChild != null){
+            leftChild.printPostOrder();
+        }
+        if (rightChild != null){
+            rightChild.printPostOrder();
+        }
+        System.out.println(this.value);
         
     }
 
@@ -55,16 +61,31 @@ public class TreeNode {
 
 
     public void printPreOrder() {
-        
-        
-        
+        if (leftChild != null){
+            System.out.println(this.value);
+            leftChild.printPreOrder();
+        }
+        else{
+            System.out.println(this.value);
+        }
+        if (rightChild != null){
+            rightChild.printPreOrder();
+        }        
         
     }
 
     TreeNode find(int i) {
+        TreeNode currentNode = this;
+        while (currentNode.value != i){
+            if (currentNode.value < i){
+                currentNode = currentNode.rightChild;
+            }
+            if (currentNode.value > i){
+                currentNode = currentNode.leftChild;
+            }
+        }
         
-        
-        return null;
+        return currentNode;
     }
 
     TreeNode update(int i) {
