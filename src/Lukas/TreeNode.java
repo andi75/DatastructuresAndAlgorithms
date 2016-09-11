@@ -23,7 +23,7 @@ public class TreeNode
                 this.leftChild.add(item);
                 // goes on to the next branch to the left
             }
-            else
+            else // adds a leaf
             {
                 this.leftChild.value = item;
                 // adds a item
@@ -31,19 +31,42 @@ public class TreeNode
         }
         if(item >= this.value)
         {
-            if(item > this.value)
+            if(this.rightChild != null)
             {
                 this.rightChild.add(item);
                 // 
             }
-            // to be continued
+            else // adds a leaf
+            {
+            	this.rightChild.value = item;
+            }
         }
     }
     
 
-    void inOrderTraversal() 
+    public void inOrderTraversal() 
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    	
+    	// Very messy... not the final form (not even working)
+    	
+    	TreeNode currentItem = this;
+    	currentItem = getLeftLeaf(currentItem);
+        System.out.println(currentItem.value);
+        
+        currentItem = currentItem.parent;
+        System.out.println(currentItem.value);
+        
+        currentItem = getLeftLeaf(currentItem.rightChild);
+        System.out.println(currentItem.value);
+    }
+    TreeNode getLeftLeaf(TreeNode currentItem)
+    {
+    	while(currentItem.leftChild != null)
+    	{
+    		currentItem = currentItem.leftChild;
+    	}
+    	
+    	return currentItem;
     }
 
     void preOrderTraversal() 
@@ -55,6 +78,7 @@ public class TreeNode
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
     
    
 }
