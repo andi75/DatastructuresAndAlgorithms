@@ -1,5 +1,7 @@
 package Carlo;
 
+import java.util.ArrayList;
+
 public class TreeNode {
     
     public TreeNode leftChild, rightChild, parent;
@@ -89,9 +91,46 @@ public class TreeNode {
     }
 
     TreeNode update(int i) {
+        TreeNode currentNode = this;
+        TreeNode root = this.getRoot();
+        currentNode.value = i;
         
+        if(root != currentNode){
+        if(currentNode.parent.leftChild == currentNode){
+            currentNode.parent.leftChild = null;
+        }
+               
+        if(currentNode.parent.rightChild == currentNode){
+            currentNode.parent.rightChild = null;
+        }
+        }
         
-        return null;
+        if(currentNode.rightChild != null){
+            currentNode.rightChild.update(currentNode.rightChild.value);
+        }
+        
+        if(currentNode.leftChild != null){
+            currentNode.leftChild.update(currentNode.leftChild.value);
+        }
+        
+        if(root != currentNode){
+        root.add(currentNode.value);
+        }
+        
+        return root;
     }
+    
+    TreeNode getRoot(){
+        TreeNode root = null;
+        TreeNode currentNode = this;
+        
+        while (currentNode.parent != null){
+            currentNode = currentNode.parent;
+        }
+        root = currentNode;
+        
+        return root;
+    }
+    
     
 }
