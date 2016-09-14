@@ -50,6 +50,15 @@ public class TreeNode {
 		}
 		
 	}
+        
+        public TreeNode update(int value) {
+            TreeNode root = this.getRoot();
+            this.delete();
+            
+            root.insert(value);
+            
+            return root;
+        };
 	
 	
 	public TreeNode delete() {
