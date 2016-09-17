@@ -17,18 +17,22 @@ public class BinaryTree {
                 root.add(v);
             }
         }
+        /*System.out.println("Printing InOrder:");
+        root.printInOrder();
+        System.out.println("Printing PreOrder:");
+        root.printPreOrder();
+        System.out.println("Printing PostOrder:");
+        root.printPostOrder(); */
+        TreeNode seven = root.find(7);
+        //seven.update(9);
+        root = seven.deleteNode();
         System.out.println("Printing InOrder:");
         root.printInOrder();
         System.out.println("Printing PreOrder:");
         root.printPreOrder();
         System.out.println("Printing PostOrder:");
-        root.printPostOrder(); 
-        TreeNode five = root.find(4);
-        root = five.update(9);
-        /*
-        root.printInOrder();
-        root.printPreOrder();
-        root.printPostOrder();*/
+        root.printPostOrder();
+        
     }
     
 }
