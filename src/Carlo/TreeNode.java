@@ -1,7 +1,5 @@
 package Carlo;
 
-import java.util.ArrayList;
-
 public class TreeNode {
     
     public TreeNode leftChild, rightChild, parent;
@@ -90,7 +88,7 @@ public class TreeNode {
         return currentNode;
     }
 
-    TreeNode update(int i) {
+    public void update(int i) {
         TreeNode currentNode = this;
         TreeNode root = this.getRoot();
         currentNode.value = i;
@@ -116,8 +114,7 @@ public class TreeNode {
         if(root != currentNode){
         root.add(currentNode.value);
         }
-        
-        return root;
+
     }
     
     TreeNode getRoot(){
@@ -132,5 +129,76 @@ public class TreeNode {
         return root;
     }
     
-    
+    TreeNode deleteNode(){
+        TreeNode deletedNode = this;
+        TreeNode root = this.getRoot();
+        
+        if(deletedNode.parent != null){
+            if(deletedNode.parent.rightChild == deletedNode){
+                deletedNode.parent.rightChild = null;
+            }
+            
+            if(deletedNode.parent.leftChild == deletedNode){
+                deletedNode.parent.leftChild = null;
+            }
+            
+            if(deletedNode.leftChild != null){
+                deletedNode.leftChild.update(deletedNode.leftChild.value);
+            }
+            
+            if(deletedNode.rightChild != null){
+                deletedNode.rightChild.update(deletedNode.rightChild.value);
+            }
+            
+        }
+        else{
+            TreeNode currentNode = deletedNode.leftChild;
+            TreeNode leftChildOfNewRoot = null;
+            
+            
+            while (currentNode.rightChild != null){
+                currentNode = currentNode.rightChild;
+            }
+            
+            TreeNode oldConnection = currentNode.parent;
+            
+            
+            if (currentNode.leftChild != null){
+                leftChildOfNewRoot = currentNode.leftChild;
+            }
+            
+            currentNode.deleteNode();
+            root = currentNode;
+            
+            if(deletedNode.leftChild != null){
+                
+                deletedNode.leftChild.parent = root;
+                root.leftChild = deletedNode.leftChild;
+            }
+            
+            if(deletedNode.rightChild != null){
+                
+                deletedNode.rightChild.parent = root;
+                root.rightChild = deletedNode.rightChild;
+            }
+            
+            if(leftChildOfNewRoot != null){
+                
+                if(oldConnection.value < leftChildOfNewRoot.value){
+                    oldConnection.rightChild = leftChildOfNewRoot;
+                    leftChildOfNewRoot.parent = oldConnection;
+                }
+                else{
+                    oldConnection.leftChild = leftChildOfNewRoot;
+                    leftChildOfNewRoot.parent = oldConnection;
+                }
+                
+            }
+
+            
+        }
+        
+        return root;
+               
+    }
 }
